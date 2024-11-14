@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { HomeComponent } from './features/home/home.component';
 import { CommonService } from './shared/services/common.service';
 
@@ -11,8 +11,10 @@ import { CommonService } from './shared/services/common.service';
 })
 export class AppComponent {
   @HostListener('window:scroll', ['$event'])
-  onScroll(event: Event) {
-    this.commonServ.isScrolled.set(window.scrollY > 0);
+  onScroll() {
+    setTimeout(() => {
+      this.commonServ.isScrolled.set(window.scrollY > 80);
+    }, 300);
   }
 
   @HostListener('window:mousemove', ['$event'])
