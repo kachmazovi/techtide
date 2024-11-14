@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <div class="parrent">
+    <div
+      #slider
+      class="slider"
+      (mousedown)="onMouseDown()"
+      (mouseup)="onMouseUp()"
+      (mouseleave)="onMouseUp()"
+    >
+      @for (item of images; track $index) {
+      <div class="item"></div>
+      }
+    </div>
+  </div>
+</div>

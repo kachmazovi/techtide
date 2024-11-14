@@ -1,0 +1,35 @@
+.wrapper {
+  background: #131313;
+  padding: 0 16%;
+
+  .parrent {
+    overflow: hidden;
+
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      cursor: grab;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .item {
+        flex: 0 0 200px;
+        scroll-snap-align: start;
+        padding: 0 10px;
+        margin: 10px 30px;
+        width: 100px;
+        height: 100px;
+        background-image: url(../../../../assets/images/logo.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
+}

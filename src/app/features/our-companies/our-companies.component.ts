@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
 
 @Component({
   selector: 'app-our-companies',
   standalone: true,
-  imports: [],
+  imports: [CarouselComponent],
   templateUrl: './our-companies.component.html',
-  styleUrl: './our-companies.component.scss'
+  styleUrl: './our-companies.component.scss',
 })
-export class OurCompaniesComponent {
-
-}
+export class OurCompaniesComponent {}
