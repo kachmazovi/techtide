@@ -1,0 +1,68 @@
+.header {
+  padding: 0 50px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  line-height: 30px;
+  transition: all 0.5s;
+  position: relative;
+  z-index: 1;
+
+  &.fixed {
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #262626;
+  }
+
+  .logo {
+    min-width: 300px;
+
+    span {
+      display: block;
+      background-image: url("../../../assets/images/logo.svg");
+      width: 156px;
+      height: 114px;
+      background-size: cover;
+      position: relative;
+
+      &::after {
+        content: "Solutions";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 130px;
+        transform: translate(0, -50%);
+        font-size: 36px;
+      }
+    }
+  }
+
+  .navigation {
+    ul {
+      width: 400px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .slogan {
+    width: 220px;
+
+    @media (max-width: 1200px) {
+      display: none;
+    }
+  }
+
+  .contact {
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+}
