@@ -11,21 +11,21 @@
     padding: 0;
     color: white;
 
-    .logo {
-      width: 200px;
-      height: 200px;
-      background-image: url(../../../assets/images/logo.svg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      margin: auto;
-    }
-
     .services-header {
       text-align: center;
       position: relative;
       z-index: 100;
       background-color: #131313;
+
+      .logo {
+        width: 200px;
+        height: 200px;
+        background-image: url(../../../assets/images/logo.svg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: auto;
+      }
 
       h1 {
         font-size: $size-xxl;
@@ -39,6 +39,14 @@
         color: $secondary-color;
         line-height: 24px;
       }
+    }
+
+    .services {
+      padding: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      gap: 30px;
     }
   }
 }

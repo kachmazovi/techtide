@@ -12,7 +12,9 @@
       </div>
     </div>
     <div class="services container-xxl">
+      @for (item of cards; track $index) {
       <app-service-card />
+      }
     </div>
   </div>
 </div>
