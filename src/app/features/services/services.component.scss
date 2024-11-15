@@ -1,17 +1,15 @@
 @import "../../shared/styles/variables.scss";
 
 .section {
-  background-color: $secondary-color;
+  background-color: $bg-secondary;
   padding: 100px 0;
 
   .wrapper {
     display: flex;
     flex-direction: column;
     margin: auto;
+    padding: 0;
     color: white;
-    background-color: $secondary-color;
-    position: relative;
-    z-index: 100;
 
     .logo {
       width: 200px;
@@ -25,18 +23,20 @@
 
     .services-header {
       text-align: center;
+      position: relative;
+      z-index: 100;
+      background-color: #131313;
 
       h1 {
         font-size: $size-xxl;
         font-weight: bold;
-        margin-bottom: 30px;
       }
 
       p {
         width: 40%;
-        margin: auto;
+        margin: 30px auto;
         font-size: $size-md;
-        color: #9c9c9c;
+        color: $secondary-color;
         line-height: 24px;
       }
     }

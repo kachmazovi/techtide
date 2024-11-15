@@ -1,0 +1,142 @@
+@import "../../../shared/styles/variables.scss";
+
+.wrapper {
+  width: 260px;
+  height: 480px;
+  border: 1px solid #262626;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 24px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    .logo {
+      transform: scale(1.1);
+    }
+    .logo::after {
+      transform: skew(10deg, 10deg) rotateY(180deg);
+    }
+
+    .item {
+      top: 370px;
+      left: 140px;
+      animation: card-hover 0.4s 1 linear;
+    }
+  }
+
+  .item {
+    width: 120px;
+    height: 120px;
+    background-image: url(../../../../assets/images/services/hover-item.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 420px;
+    left: 255px;
+    transition: all 0.7s;
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+    background-image: url(../../../../assets/images/services/service-logo.svg);
+    background-position: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: all 0.7s;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 90px;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent -30px,
+        #df2919 150px,
+        #df2919 8px
+      );
+      transform: rotate(30deg) skew(10deg, 10deg);
+      border-radius: 21%;
+      transition: all 0.5s;
+    }
+  }
+
+  h1 {
+    font-size: $size-xl;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  p {
+    color: $secondary-color;
+    font-size: $size-md;
+    line-height: 20px;
+  }
+
+  button {
+    width: 150px;
+    height: 36px;
+    border: none;
+    color: white;
+    background: #181818;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &::after {
+      content: "";
+      background-color: $primary-color;
+      height: 100px;
+      left: auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      z-index: -1;
+      transition: all 0.3s;
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+        right: auto;
+        left: 0;
+      }
+    }
+
+    i {
+      transform: rotate(35deg);
+      margin-left: 10px;
+    }
+  }
+}
+
+@keyframes card-hover {
+  0% {
+    top: 460px;
+    left: 255px;
+  }
+  15% {
+    transform: scale(2);
+  }
+  30% {
+    top: 400px;
+    left: 200px;
+  }
+  100% {
+    top: 370px;
+    left: 140px;
+  }
+}
