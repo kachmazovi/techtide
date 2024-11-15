@@ -1,4 +1,8 @@
+@import "../../shared/styles/variables.scss";
+@import "../../shared/styles/mixins.scss";
+
 .header {
+  @include position(absolute, -80px, 0, 1);
   width: 100%;
   max-width: 1320px;
   margin: auto;
@@ -7,24 +11,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: $size-md;
   color: white;
   font-weight: bold;
   line-height: 30px;
   transition: background-color 0.5s;
   border-radius: 0 0 25px 25px;
-  position: absolute;
-  top: -80px;
-  left: 0;
-  z-index: 1;
 
   &.fixed {
+    @include position(fixed, 0, 0, 1000);
     height: 90px;
-    position: fixed;
-    top: 0;
-    left: 0;
     right: 0;
-    z-index: 1000;
     background-color: #262626;
     animation: showNavigation 0.5s;
   }
@@ -43,9 +40,7 @@
       &::after {
         content: "Solutions";
         display: block;
-        position: absolute;
-        top: 50%;
-        left: 130px;
+        @include position(absolute, 50%, 130px, 0);
         transform: translate(0, -50%);
         font-size: 36px;
       }
@@ -57,6 +52,14 @@
       width: 400px;
       display: flex;
       justify-content: space-between;
+
+      a {
+        transition: all 0.5s;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
     }
   }
 
@@ -69,6 +72,15 @@
   }
 
   .contact {
+    span {
+      transition: all 0.5s;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
     @media (max-width: 900px) {
       display: none;
     }
