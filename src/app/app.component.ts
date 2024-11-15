@@ -2,11 +2,12 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { HomeComponent } from './features/home/home.component';
 import { CommonService } from './shared/services/common.service';
 import { OurCompaniesComponent } from './features/our-companies/our-companies.component';
+import { ServicesComponent } from './features/services/services.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HomeComponent, OurCompaniesComponent],
+  imports: [HomeComponent, OurCompaniesComponent, ServicesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

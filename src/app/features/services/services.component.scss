@@ -1,0 +1,44 @@
+@import "../../shared/styles/variables.scss";
+
+.section {
+  background-color: $secondary-color;
+  padding: 100px 0;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    color: white;
+    background-color: $secondary-color;
+    position: relative;
+    z-index: 100;
+
+    .logo {
+      width: 200px;
+      height: 200px;
+      background-image: url(../../../assets/images/logo.svg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: auto;
+    }
+
+    .services-header {
+      text-align: center;
+
+      h1 {
+        font-size: $size-xxl;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      p {
+        width: 40%;
+        margin: auto;
+        font-size: $size-md;
+        color: #9c9c9c;
+        line-height: 24px;
+      }
+    }
+  }
+}

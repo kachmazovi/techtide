@@ -42,7 +42,7 @@
         display: block;
         @include position(absolute, 50%, 130px, 0);
         transform: translate(0, -50%);
-        font-size: 36px;
+        font-size: $size-xl;
       }
     }
   }

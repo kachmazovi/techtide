@@ -1,5 +1,7 @@
+@import "../../styles/variables.scss";
+
 .wrapper {
-  background: #131313;
+  background: $secondary-color;
 
   @media (max-width: 1200px) {
     padding: 0 5%;
