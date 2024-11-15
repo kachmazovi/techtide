@@ -7,7 +7,7 @@
         left: slider1PositionX + 'px',
         width: sliderWidth + 'px'
       }"
-      (mousedown)="onMouseDown()"
+      (mousedown)="onMouseDown($event)"
       (mouseup)="onMouseUp()"
       (mouseleave)="onMouseUp()"
     >
@@ -22,7 +22,7 @@
         left: slider2PositionX + 'px',
         width: sliderWidth + 'px'
       }"
-      (mousedown)="onMouseDown()"
+      (mousedown)="onMouseDown($event)"
       (mouseup)="onMouseUp()"
       (mouseleave)="onMouseUp()"
     >

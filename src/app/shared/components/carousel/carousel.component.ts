@@ -21,6 +21,16 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   @ViewChild('slider1') slider1!: ElementRef;
   @ViewChild('slider2') slider2!: ElementRef;
 
+  @HostListener('window:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    if (this.isHodling) {
+      const diff = this.mouseCurrentX - event.x;
+      this.animationSpeed = diff;
+      this.mouseCurrentX = event.x;
+      this.animateSliders();
+    }
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.parentInnerWidth =
@@ -34,7 +44,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   public parentInnerWidth = 0;
 
   private intervalId?: number;
-  private isHodling = signal(false);
+  private mouseCurrentX = 0;
+  private animationSpeed = 2.5;
+  private isHodling = false;
 
   constructor(private renderer: Renderer2) {}
 
@@ -51,34 +63,36 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     this.clearAnimation();
   }
 
-  public onMouseDown(): void {
+  public onMouseDown(event: MouseEvent): void {
+    this.isHodling = true;
+    this.mouseCurrentX = event.x;
     this.setCursorStyle('grabbing');
-    this.isHodling.set(true);
     this.clearAnimation();
   }
 
-  public onMouseMove(): void {
-    this.setCursorStyle('grab');
-  }
-
   public onMouseUp(): void {
+    this.isHodling = false;
+    this.animationSpeed = 2.5;
     this.setCursorStyle('grab');
-    this.isHodling.set(false);
+    this.startAnimation();
   }
 
   private setCursorStyle(cursor: string): void {
     this.renderer.setStyle(this.slider1.nativeElement, 'cursor', cursor);
+    this.renderer.setStyle(this.slider2.nativeElement, 'cursor', cursor);
   }
 
   private startAnimation(): void {
     if (this.intervalId === undefined) {
       this.slider2PositionX = this.getNextPositionX(this.slider1PositionX);
+      this.slider1.nativeElement.style.transition = 'all 0.025s linear';
+      this.slider2.nativeElement.style.transition = 'all 0.025s linear';
       setTimeout(() => {
         this.animateSliders();
         this.intervalId = window.setInterval(() => {
           this.animateSliders();
-        }, 2500);
-      }, 100);
+        }, 25);
+      }, 0);
     }
   }
 
@@ -86,6 +100,8 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     if (this.intervalId !== undefined) {
       clearInterval(this.intervalId);
       this.intervalId = undefined;
+      this.slider1.nativeElement.style.transition = 'none';
+      this.slider2.nativeElement.style.transition = 'none';
     }
   }
 
@@ -93,23 +109,44 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     this.renderer.setStyle(this.slider1.nativeElement, 'display', 'flex');
     this.renderer.setStyle(this.slider2.nativeElement, 'display', 'flex');
 
-    this.slider1PositionX -= 260;
-    this.slider2PositionX -= 260;
+    this.slider1PositionX -= this.animationSpeed;
+    this.slider2PositionX -= this.animationSpeed;
 
-    if (this.slider1PositionX < -this.sliderWidth) {
+    if (this.slider1PositionX < -this.sliderWidth && this.animationSpeed > 0) {
       this.renderer.setStyle(this.slider1.nativeElement, 'display', 'none');
       this.slider1PositionX = this.getNextPositionX(this.slider2PositionX);
     }
 
-    if (this.slider2PositionX < -this.sliderWidth) {
+    if (this.slider1PositionX + this.sliderWidth > this.sliderWidth) {
+      this.slider2PositionX = this.getNextPositionXReversed(
+        this.slider1PositionX
+      );
+    }
+
+    if (this.slider2PositionX < -this.sliderWidth && this.animationSpeed > 0) {
       this.renderer.setStyle(this.slider2.nativeElement, 'display', 'none');
       this.slider2PositionX = this.getNextPositionX(this.slider1PositionX);
+    }
+
+    if (
+      this.slider2PositionX + this.sliderWidth > this.sliderWidth &&
+      this.animationSpeed < 0
+    ) {
+      this.slider1PositionX = this.getNextPositionXReversed(
+        this.slider2PositionX
+      );
     }
   }
 
   private getNextPositionX(currentPosition: number): number {
     return this.sliderWidth > this.parentInnerWidth
       ? currentPosition + this.sliderWidth
-      : currentPosition + this.parentInnerWidth + 260;
+      : currentPosition + this.parentInnerWidth + 2.5;
+  }
+
+  private getNextPositionXReversed(currentPosition: number): number {
+    return this.sliderWidth > this.parentInnerWidth
+      ? currentPosition - this.sliderWidth
+      : currentPosition - this.parentInnerWidth + 2.5;
   }
 }
