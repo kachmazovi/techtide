@@ -46,6 +46,7 @@
       margin-bottom: 30px;
       position: relative;
       z-index: 1;
+      animation: header 1s linear;
     }
 
     p {
@@ -53,6 +54,29 @@
       font-size: $size-lg;
       line-height: 30px;
       color: gray;
+      animation: description 1s linear;
     }
+  }
+}
+
+@keyframes header {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes description {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
