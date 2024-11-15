@@ -37,11 +37,11 @@
   .slogan-description {
     color: white;
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     padding: 100px;
 
     h1 {
-      font-size: 64px;
+      font-size: 74px;
       font-weight: bold;
       margin-bottom: 30px;
       position: relative;
@@ -55,6 +55,33 @@
       line-height: 30px;
       color: gray;
       animation: description 1s linear;
+    }
+
+    .discover {
+      color: white;
+      font-size: $size-sm;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+
+      &:hover {
+        cursor: pointer;
+        color: $primary-color;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        width: 250px;
+        margin-right: 20px;
+        border-bottom: 1px solid $primary-color;
+      }
+
+      i {
+        color: $primary-color;
+        margin-left: 10px;
+      }
     }
   }
 }
