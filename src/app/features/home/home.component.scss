@@ -1,7 +1,5 @@
 .home {
-  min-height: 1000px;
-  padding-top: 80px;
-  background-image: url(../../../assets/images/home-bg.png);
+  position: relative;
 
   &::after {
     content: "";

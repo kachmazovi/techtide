@@ -1,14 +1,33 @@
 <div class="wrapper">
-  <div class="parrent">
+  <div class="parent">
     <div
-      #slider
-      class="slider"
+      #slider1
+      class="slider first"
+      [ngStyle]="{
+        left: slider1PositionX + 'px',
+        width: sliderWidth + 'px'
+      }"
       (mousedown)="onMouseDown()"
       (mouseup)="onMouseUp()"
       (mouseleave)="onMouseUp()"
     >
       @for (item of images; track $index) {
-      <div class="item"></div>
+      <div class="item">{{ item }}</div>
+      }
+    </div>
+    <div
+      #slider2
+      class="slider second"
+      [ngStyle]="{
+        left: slider2PositionX + 'px',
+        width: sliderWidth + 'px'
+      }"
+      (mousedown)="onMouseDown()"
+      (mouseup)="onMouseUp()"
+      (mouseleave)="onMouseUp()"
+    >
+      @for (item of images; track $index) {
+      <div class="item">{{ item }}</div>
       }
     </div>
   </div>
